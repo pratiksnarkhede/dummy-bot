@@ -4,7 +4,7 @@
   "description": "![](https://i.imgur.com/r4t0Yve.png \"logo\")",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
