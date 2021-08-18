@@ -1,7 +1,7 @@
 const { getRandomFacts } = require("allfacts");
 const giveMeAJoke = require("discord-jokes");
-// const discord = require("discord.js");
-const { Client, Intents } = require('discord.js');
+// const discord = require("discord.js"); 
+const { Client, Intents, Permissions} = require('discord.js');
 var catMe = require("cat-me");
 const express = require("express");
 const app = express();
@@ -19,6 +19,7 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (messageCreate) => {
+  client.user.setActivity(`INSERT TEXT HERE`, { type: "PLAYING" })
   if (messageCreate.author.bot) return;
   if (!messageCreate.content.startsWith(prefix)) {
     console.log(messageCreate.author);
@@ -40,14 +41,8 @@ client.on("messageCreate", (messageCreate) => {
   } else if (command === "cat") {
     messageCreate.channel.send(catMe());
   }
-  client.user.setPresence({
-    status: "online",
-    activity: {
-      name: "Destiny 2",
-      type: "PLAYING",
-    },
-  });
 });
+
 
 client.on("messageCreate", (messageCreate) => {
   if (!messageCreate.guild) return;
@@ -57,24 +52,29 @@ client.on("messageCreate", (messageCreate) => {
     if (user) {
       // Now we get the member from the user
       const member = messageCreate.guild.members.resolve(user);
-      // if user is me or dummy
-      if (user.discriminator === "7504" || user.discriminator === "4456") {
-        messageCreate.reply("Wtf u doing, I can't kick myself");
-      }
-      // If the member is in the guild
-      else if (member) {
-        member
-          .kick()
-          .then(() => {
-            messageCreate.reply(`Successfully kicked ${user.tag}`);
-            console.log(user);
-          })
-          .catch((err) => {
-            messageCreate.reply("Looks like you don't have permission");
-            console.error(err);
-          });
+      // check for user permission to kick member
+      if (messageCreate.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
+        // if user is me or dummy
+        if (user.discriminator === "7504" || user.discriminator === "4456") {
+          messageCreate.reply("Wtf u doing, I can't kick myself");
+        }
+        // If the member is in the guild
+        else if (member) {
+          member
+            .kick()
+            .then(() => {
+              messageCreate.reply(`Successfully kicked ${user.tag}`);
+              console.log(user);
+            })
+            .catch((err) => {
+              messageCreate.reply("Looks like you don't have permission");
+              console.error(err);
+            });
+        } else {
+          messageCreate.reply("That user isn't in this guild!");
+        }
       } else {
-        messageCreate.reply("That user isn't in this guild!");
+        messageCreate.reply("Nice try, but u dont have permission lol.")
       }
     } else {
       messageCreate.reply("You didn't mention the user to kick!");
