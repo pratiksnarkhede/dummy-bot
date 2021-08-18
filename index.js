@@ -19,7 +19,7 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (messageCreate) => {
-  client.user.setActivity(`INSERT TEXT HERE`, { type: "PLAYING" })
+  client.user.setActivity(`Discord`, { type: "PLAYING" })
   if (messageCreate.author.bot) return;
   if (!messageCreate.content.startsWith(prefix)) {
     console.log(messageCreate.author);
