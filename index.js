@@ -19,26 +19,33 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (messageCreate) => {
-  client.user.setActivity(`!help`, { type: "PLAYING" }); 
+  client.user.setActivity(`!help`, { type: "PLAYING" }); //added rich presence
+
   if (messageCreate.author.bot) return;
   if (!messageCreate.content.startsWith(prefix)) {
     console.log(messageCreate.author);
   }
+
   const commandBody = messageCreate.content.slice(prefix.length);
   const args = commandBody.split(" ");
   const command = args.shift().toLowerCase();
+
   if (command === "ping") {
+    // ping command
     const timeTaken = Date.now() - messageCreate.createdTimestamp;
     messageCreate.reply(`Latency of Message = ${timeTaken}ms.`);
   } else if (command === "fact") {
+    // fact command
     getRandomFacts().then((fact) => {
       messageCreate.reply(fact[0].name);
     });
   } else if (command === "joke") {
+    // joke command
     giveMeAJoke.getRandomDadJoke(function (joke) {
       messageCreate.reply(joke);
     });
   } else if (command === "cat") {
+    // cat command
     messageCreate.channel.send(catMe());
   } else if (command === "help") {
     // shows help
@@ -80,6 +87,7 @@ client.on("messageCreate", (messageCreate) => {
   }
 });
 
+// kick command
 client.on("messageCreate", (messageCreate) => {
   if (!messageCreate.guild) return;
   if (messageCreate.content.startsWith("!kick")) {
@@ -121,3 +129,5 @@ client.on("messageCreate", (messageCreate) => {
 });
 
 client.login(process.env.BOT_TOKEN);
+
+// !NOTE - Folder structure of this bot will change in future.
