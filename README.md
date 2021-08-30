@@ -1,9 +1,9 @@
 # Dummy
 
-![](https://i.imgur.com/r4t0Yve.png "logo")
+<img src="assets/dummy.png"
+     alt="dummy-profile-pic"/>
 
 ## Simplicity is key
-Dummy is a lightweight Discord bot written in Node JS
 
 ```
 Utility:
@@ -16,5 +16,3 @@ Utility:
 ```
 
 [Click here](https://discord.com/oauth2/authorize?client_id=808341799022231566&permissions=8&scope=bot) To add in server
-
-#### Powered by Heroku
