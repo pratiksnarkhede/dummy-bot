@@ -55,30 +55,11 @@ client.on("messageCreate", (messageCreate) => {
       .setDescription("My prefix for commands is !")
       .setThumbnail("https://i.imgur.com/r4t0Yve.png")
       .addFields(
-        {
-          name: "Command",
-          value: `
-      !help
-      !kick @user
-      !ping
-      !fact
-      !joke
-      !cat
-    `,
-          inline: true,
-        },
-        {
-          name: "Utility",
-          value: `
-      - Display this message
-      - Kick users from server
-      - Shows ping for message
-      - Shows random fact around the world
-      - You will see how good is dummy at jokes
-      - Shows random ASCII cat 😊
-    `,
-          inline: true,
-        }
+        { name: '!kick @user', value: `Kicks user from server`},
+        { name: '!fact', value: `Shows random fact around the world`},
+        { name: '!joke', value: `Wanna hear joke?, I got tons of them`},
+        { name: '!ping', value: `Displays ping for message`},
+        { name: '!cat', value: `Shows random ASCII cat😊`},
       )
       .setTimestamp()
       .setFooter("More commands will be added soon.");
