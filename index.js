@@ -51,7 +51,7 @@ client.on("messageCreate", (messageCreate) => {
     // shows help
     const helpEmbed = new MessageEmbed()
       .setColor("#0099ff")
-      .setTitle("Dummy Help")
+      .setTitle("Dummy HELP")
       .setDescription("My prefix for commands is !")
       .setThumbnail("https://i.imgur.com/r4t0Yve.png")
       .addFields(
